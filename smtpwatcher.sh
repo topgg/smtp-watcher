@@ -1,3 +1,7 @@
+#  获取 postfix 执行文件的path whereis postfix|awk -F' ' '{print$2}'
+#  postfix 执行文件的path#  whereis postfix|awk -F' ' '{print$2}'
+#  
+#
 #!/bin/sh
 file_name="/home/jumpol/Crontabrestart.log"  #重启脚本的日志，保证可写入，保险一点执行 chmod 777 Crontabrestart.log
 pid=0
@@ -33,7 +37,7 @@ echo ${number[*]}
 if [ ${number[0]} -eq 0 ]  #如果没有该进程，则重启
 then
     echo '重启Postfix'
-    sudo /etc/init.d/postfix restart
+    sudo $postfixpath
     #启动程序的命令
    
     echo ${pid}, `date` >> $file_name  #把重启的进程号、时间 写入日志

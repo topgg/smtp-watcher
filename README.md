@@ -12,7 +12,7 @@
 sudo mkdir /scripts
 sudo chmod 755 /scripts
 cd  /scripts
-sudo wget https://raw.githubusercontent.com/topgg/smtp-watcher/master/addcron.sh && sudo addcron.sh
+sudo wget https://raw.githubusercontent.com/topgg/smtp-watcher/master/addcron.sh && sudo sh addcron.sh
 sudo mkdir /var/log/crontab
 sudo touch /var/log/crontab/smtpwatcher.logs
 sudo chmod 666 /var/log/crontab/smtpwatcher.logs

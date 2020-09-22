@@ -4,15 +4,21 @@
   - 多个linux发行版本并存，如果仅仅是 Centos7 , 创建systemctl unit 也是个好办法
   - 批量smtp服务器
   - 多个postfix 版本并存
-## 使用方法 
+  - 拥有root权限，但用维护账号执行
+## 使用方法
 
+如下命令粘贴至命令行
+```
+sudo mkdir /scripts
+sudo chmod 755 /scripts
+cd  /scripts
+wget https://raw.githubusercontent.com/topgg/smtp-watcher/master/addcron.sh && sudo addcron.sh
+sudo mkdir /var/log/crontab
+sudo touch /var/log/crontab/smtpwatcher.logs
+sudo chmod 666 /var/log/crontab/smtpwatcher.logs
+sudo wget --no-check-certificate  https://raw.githubusercontent.com/topgg/smtp-watcher/master/smtpwatcher.sh && sudo chmod 755 smtpwatcher.sh
+```
 
-```
-mkdir scripts
-mkdir /var/log/crontab
-touch /var/log/crontab/smtpwatcher.log
-cd scripts
-```
 #### 1. 下载此脚本赋予可执行权限
 wget --no-check-certificate  https://raw.githubusercontent.com/topgg/smtp-watcher/master/smtpwatcher.sh && chmod 755 smtpwatcher.sh
 #### 2. 在 crontab中添加

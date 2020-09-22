@@ -1,2 +1,2 @@
 #!/bin/bash
-echo ' 2 * * * * $USER sudo /scripts/smtpwatcher.sh' >>/etc/crontab
+echo " 2 * * * * $USER sudo /scripts/smtpwatcher.sh" >>/etc/crontab

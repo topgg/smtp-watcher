@@ -9,7 +9,7 @@
 
 ```
 mkdir scripts
-mkdir /var/log/crontab-C
+mkdir /var/log/crontab
 touch /var/log/crontab/smtpwatcher.log
 cd scripts
 ```

@@ -1,7 +1,14 @@
-#  获取 postfix 执行文件的path whereis postfix|awk -F' ' '{print$2}'
-#  postfix 执行文件的path#  whereis postfix|awk -F' ' '{print$2}'
+#  获取 postfix 执行文件路径 whereis postfix|awk -F' ' '{print$2}'
 #  
-#
+#  reloadpostfix="`(whereis postfix|awk -F' ' '{print$2}')` reload"
+
+#  sudo $reloadpostfix;
+
+#  realodsaslauth= "/usr/sbin/saslauthd -m /var/run/saslauthd -a pam"
+
+#  reloadopendkim=
+
+
 #!/bin/sh
 file_name="/home/jumpol/Crontabrestart.log"  #重启脚本的日志，保证可写入，保险一点执行 chmod 777 Crontabrestart.log
 pid=0
@@ -26,11 +33,17 @@ proc_num_opendkim()
 #{  
 #    pid=`ps -ef | grep 'sh /home/work/run.sh' | grep -v grep | awk '{print $2}'`  #此处'sh /home/work/run.sh'也替代为实际的
 #}
+echo '输出当前进程ID'
 
+echo $0
 
 number[0]=$(proc_num_postfix)  #执行proc_num()，获取进程数
 number[1]=$(proc_num_saslauthd)
 number[2]=$(proc_num_opendkim)
+
+reloadpostfix="`(whereis postfix|awk -F' ' '{print$2}')` reload"
+echo $reloadpostfix
+sudo $reloadpostfix
 
 echo ${number[*]}
 

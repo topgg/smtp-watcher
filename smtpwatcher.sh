@@ -31,25 +31,32 @@ number[0]=$(proc_num_postfix)  #执行proc_num()，获取进程数
 number[1]=$(proc_num_saslauthd)
 number[2]=$(proc_num_opendkim)
 
-reloadpostfix="`(whereis postfix|awk -F' ' '{print$2}')` reload"
-
-if [ ${number[0]} -eq 0 ]  #如果没有该进程，则重启
-then
-    sudo $postfixpath 1>&2 >> $file_name
-    #启动程序的命令
-    echo '重启Postfix', `date` >> $file_name  #把重启的进程号、时间 写入日志
-fi
-
-if [ ${number[1]} -eq 0 ]  #如果没有该进程，则重启
-then
+if [ ${number[0]} -ne 0 ]&& [ ${number[1]} -ne 0 ] && [ ${number[2]} -ne 0 ]
+then 
+    echo '正常,无需重启',`date` >> $file_name
+    else 
     
-    sudo /usr/sbin/saslauthd -m /var/run/saslauthd -a pam 1>&2 >> $file_name
-    #启动程序的命令
-    echo '重启saslauth', `date` >> $file_name  #把重启的进程号、时间 写入日志
+    reloadpostfix="`(whereis postfix|awk -F' ' '{print$2}')` reload"
+    if [ ${number[0]} -eq 0 ]  #如果没有该进程，则重启
+    then
+        sudo $postfixpath 1>&2 >> $file_name
+        #启动程序的命令
+        echo '重启Postfix', `date` >> $file_name  #把重启的进程号、时间 写入日志
+    fi
+
+    if [ ${number[1]} -eq 0 ]  #如果没有该进程，则重启
+    then
+
+        sudo /usr/sbin/saslauthd -m /var/run/saslauthd -a pam 1>&2 >> $file_name
+        #启动程序的命令
+        echo '重启saslauth', `date` >> $file_name  #把重启的进程号、时间 写入日志
+    fi
+
+    if [ ${number[2]} -eq 0 ]  #如果没有该进程，则重启
+    then
+        sudo /usr/sbin/opendkim -x /etc/opendkim.conf -P /var/run/opendkim/opendkim.pid 1>&2 >> $file_name   #启动程序的命令
+        echo '重启opendkim', `date` >> $file_name  #把重启的进程号、时间 写入日志
+    fi
 fi
 
-if [ ${number[2]} -eq 0 ]  #如果没有该进程，则重启
-then
-    sudo /usr/sbin/opendkim -x /etc/opendkim.conf -P /var/run/opendkim/opendkim.pid 1>&2 >> $file_name   #启动程序的命令
-    echo '重启opendkim', `date` >> $file_name  #把重启的进程号、时间 写入日志
-fi
+

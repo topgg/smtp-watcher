@@ -26,7 +26,6 @@ proc_num_opendkim()
 #{  
 #    pid=`ps -ef | grep 'sh /home/work/run.sh' | grep -v grep | awk '{print $2}'`  #此处'sh /home/work/run.sh'也替代为实际的
 #}
-echo '输出当前进程ID'
 
 number[0]=$(proc_num_postfix)  #执行proc_num()，获取进程数
 number[1]=$(proc_num_saslauthd)

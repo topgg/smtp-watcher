@@ -33,7 +33,7 @@ number[2]=$(proc_num_opendkim)
 
 if [ ${number[0]} -ne 0 ]&& [ ${number[1]} -ne 0 ] && [ ${number[2]} -ne 0 ]
 then 
-    echo '正常,无需重启',`date` >> $file_name
+    echo 'SMTP SASL OPENDKIM正常,无需重启',`date` >> $file_name
     else 
     
     reloadpostfix="`(whereis postfix|awk -F' ' '{print$2}')` reload"

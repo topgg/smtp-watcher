@@ -14,8 +14,8 @@ mkdir /scripts && chmod 755 /scripts
 cd  /scripts
 crontab -l > conf && echo " 2 * * * * $USER /scripts/smtpwatcher.sh" >> conf && crontab conf && rm -rf conf 
 mkdir /var/log/crontab
-touch /var/log/crontab/smtpwatcher.logs
-chmod 666 /var/log/crontab/smtpwatcher.logs
+touch /var/log/crontab/smtpwatcher.log
+chmod 666 /var/log/crontab/smtpwatcher.log
 wget --no-check-certificate  https://raw.githubusercontent.com/topgg/smtp-watcher/master/smtpwatcher.sh && sudo chmod 755 smtpwatcher.sh
 ```
 

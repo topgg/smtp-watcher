@@ -9,14 +9,14 @@
 
 如下命令粘贴至命令行
 ```
-sudo mkdir /scripts
-sudo chmod 755 /scripts
+sudo su # 获取root账号操作权限
+mkdir /scripts && chmod 755 /scripts
 cd  /scripts
-sudo wget https://raw.githubusercontent.com/topgg/smtp-watcher/master/addcron.sh && sudo sh addcron.sh
-sudo mkdir /var/log/crontab
-sudo touch /var/log/crontab/smtpwatcher.logs
-sudo chmod 666 /var/log/crontab/smtpwatcher.logs
-sudo wget --no-check-certificate  https://raw.githubusercontent.com/topgg/smtp-watcher/master/smtpwatcher.sh && sudo chmod 755 smtpwatcher.sh
+crontab -l > conf && echo " 2 * * * * $USER /scripts/smtpwatcher.sh" >> conf && crontab conf && rm -rf conf 
+mkdir /var/log/crontab
+touch /var/log/crontab/smtpwatcher.logs
+chmod 666 /var/log/crontab/smtpwatcher.logs
+wget --no-check-certificate  https://raw.githubusercontent.com/topgg/smtp-watcher/master/smtpwatcher.sh && sudo chmod 755 smtpwatcher.sh
 ```
 
 #### 1. 下载此脚本赋予可执行权限

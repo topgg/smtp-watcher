@@ -12,7 +12,7 @@
 #### 安装脚本
 
 ```
-sudo wget --no-check-certificate  https://raw.githubusercontent.com/topgg/smtp-watcher/master/install.sh -O install.sh && sudo chmod 755 install.sh && sh install.sh
+sudo wget --no-check-certificate  https://raw.githubusercontent.com/topgg/smtp-watcher/master/install.sh -O install.sh && sudo chmod 755 install.sh && sudo sh install.sh
 ```
 ####  日志文件
 
